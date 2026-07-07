@@ -1,4 +1,4 @@
-FROM node:20-alpine
+FROM node:24.18-alpine as development
 
 WORKDIR /home-cloud-frontend
 
@@ -10,4 +10,4 @@ COPY . .
 
 EXPOSE 3000
 
-CMD ["npm", "start"]
+CMD ["npm", "run", "dev"]
