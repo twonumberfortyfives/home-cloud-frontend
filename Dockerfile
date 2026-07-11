@@ -1,6 +1,6 @@
 FROM node:24.18-alpine as development
 
-WORKDIR /home-cloud-frontend
+WORKDIR /app
 
 COPY package*.json ./
 
