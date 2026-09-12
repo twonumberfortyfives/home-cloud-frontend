@@ -1,0 +1,42 @@
+.login-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+}
+
+.login-container {
+  width: 100%;
+  max-width: 380px;
+}
+
+.login-card {
+  padding: 32px;
+}
+
+.login-header {
+  margin-bottom: 24px;
+}
+
+.login-header h1 {
+  margin: 0 0 8px;
+
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.login-header p {
+  margin: 0;
+
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+.login-form {
+  margin: 0;
+}
+
+.login-button {
+  width: 100%;
+}

@@ -1,0 +1,112 @@
+.home-content {
+  padding-top: 48px;
+  padding-bottom: 48px;
+}
+
+
+/* =========================
+   Welcome
+   ========================= */
+
+.welcome {
+  margin-bottom: 32px;
+}
+
+.welcome h1 {
+  margin: 0 0 8px;
+
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.welcome p {
+  margin: 0;
+
+  color: var(--text-secondary);
+}
+
+
+/* =========================
+   Stats
+   ========================= */
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+
+  margin-bottom: 32px;
+}
+
+.stat-card {
+  padding: 24px;
+}
+
+.stat-label {
+  display: block;
+
+  margin-bottom: 12px;
+
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+.stat-value {
+  display: block;
+
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.stat-secondary {
+  display: block;
+
+  margin-top: 4px;
+
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+
+/* =========================
+   Storage chart
+   ========================= */
+
+.storage-chart {
+  padding: 24px;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 24px;
+}
+
+.section-header h2 {
+  margin: 0;
+
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.section-header span {
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+.chart-placeholder {
+  height: 280px;
+}
+
+
+/* =========================
+   Mobile
+   ========================= */
+
+@media (max-width: 700px) {
+  .stats {
+    grid-template-columns: 1fr;
+  }
+}

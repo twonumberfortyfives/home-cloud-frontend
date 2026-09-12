@@ -1,0 +1,51 @@
+<div class="page">
+
+  <app-navbar />
+
+  <main class="home-content container">
+
+    <section class="welcome">
+      <h1>Hello,</h1>
+      <p>This is our personal cloud storage :)</p>
+    </section>
+
+    <section class="stats">
+
+      <div class="stat-card card">
+        <span class="stat-label">Storage used</span>
+        <span class="stat-value">{{ storageUsed() }} GB</span>
+        <span class="stat-secondary">
+          of {{ totalStorage() }} GB
+        </span>
+      </div>
+
+      <div class="stat-card card">
+        <span class="stat-label">Available</span>
+        <span class="stat-value">{{ availableStorage() }} GB</span>
+        <span class="stat-secondary">remaining</span>
+      </div>
+
+      <div class="stat-card card">
+        <span class="stat-label">Files</span>
+        <span class="stat-value">{{ fileCount() }}</span>
+        <span class="stat-secondary">total files</span>
+      </div>
+
+    </section>
+
+    <section class="storage-chart card">
+
+      <div class="section-header">
+        <h2>Storage usage</h2>
+        <span>Last 30 days</span>
+      </div>
+
+      <div class="chart-placeholder">
+        <!-- Chart -->
+      </div>
+
+    </section>
+
+  </main>
+
+</div>
