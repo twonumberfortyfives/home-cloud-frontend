@@ -32,13 +32,106 @@
 
 .stats {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr 1fr;
   gap: 16px;
 
   margin-bottom: 32px;
 }
 
+
+/* =========================
+   Storage donut
+   ========================= */
+
+.storage-donut {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+
+  padding: 24px;
+}
+
+.donut {
+  position: relative;
+  flex-shrink: 0;
+
+  width: 160px;
+  height: 160px;
+}
+
+.donut-center {
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  pointer-events: none;
+}
+
+.donut-center strong {
+  font-size: 26px;
+  font-weight: 600;
+}
+
+.donut-center span {
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+.donut-legend {
+  flex: 1;
+
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.donut-legend li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 10px 0;
+
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+.donut-legend li + li {
+  border-top: 1px solid var(--border);
+}
+
+.donut-legend strong {
+  margin-left: auto;
+
+  color: var(--text);
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+
+  border-radius: 50%;
+}
+
+.dot-used {
+  background: var(--primary);
+}
+
+.dot-free {
+  background: var(--border);
+}
+
 .stat-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
   padding: 24px;
 }
 
@@ -96,10 +189,21 @@
   font-size: 13px;
 }
 
-.chart-placeholder {
-  height: 280px;
+.storage-current {
+  text-align: right;
 }
 
+.storage-current strong {
+  display: block;
+
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.chart {
+  position: relative;
+  height: 280px;
+}
 
 /* =========================
    Mobile
@@ -108,5 +212,14 @@
 @media (max-width: 700px) {
   .stats {
     grid-template-columns: 1fr;
+  }
+
+  .storage-donut {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .chart {
+    height: 220px;
   }
 }

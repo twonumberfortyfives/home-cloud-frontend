@@ -1,0 +1,245 @@
+{
+  "files": [
+    {
+      "id": "1",
+      "name": "Documents",
+      "path": "/Documents",
+      "size": 0,
+      "mimeType": "inode/directory",
+      "thumbnail": null,
+      "modifiedAt": "2026-09-13T12:00:00Z",
+      "modifiedBy": "user1",
+      "createdAt": "2026-09-01T10:00:00Z"
+    },
+    {
+      "id": "2",
+      "name": "Projects",
+      "path": "/Projects",
+      "size": 0,
+      "mimeType": "inode/directory",
+      "thumbnail": null,
+      "modifiedAt": "2026-09-12T15:30:00Z",
+      "modifiedBy": "user1",
+      "createdAt": "2026-08-20T09:00:00Z"
+    },
+    {
+      "id": "3",
+      "name": "Photos",
+      "path": "/Photos",
+      "size": 0,
+      "mimeType": "inode/directory",
+      "thumbnail": null,
+      "modifiedAt": "2026-09-10T18:20:00Z",
+      "modifiedBy": "user1",
+      "createdAt": "2026-08-15T14:00:00Z"
+    },
+    {
+      "id": "4",
+      "name": "resume.pdf",
+      "path": "/Documents/resume.pdf",
+      "size": 2457600,
+      "mimeType": "application/pdf",
+      "thumbnail": null,
+      "modifiedAt": "2026-09-12T18:30:00Z",
+      "modifiedBy": "user1",
+      "createdAt": "2026-09-05T11:20:00Z"
+    },
+    {
+      "id": "5",
+      "name": "README.md",
+      "path": "/Projects/README.md",
+      "size": 8192,
+      "mimeType": "text/markdown",
+      "thumbnail": null,
+      "modifiedAt": "2026-09-11T14:20:00Z",
+      "modifiedBy": "user1",
+      "createdAt": "2026-09-01T16:00:00Z"
+    },
+    {
+      "id": "6",
+      "name": "architecture.png",
+      "path": "/Projects/architecture.png",
+      "size": 524288,
+      "mimeType": "image/png",
+      "thumbnail": "/thumbnails/architecture.png",
+      "modifiedAt": "2026-09-10T20:15:00Z",
+      "modifiedBy": "user1",
+      "createdAt": "2026-09-03T12:30:00Z"
+    },
+    {
+      "id": "7",
+      "name": "vacation.jpg",
+      "path": "/Photos/vacation.jpg",
+      "size": 4823941,
+      "mimeType": "image/jpeg",
+      "thumbnail": "/thumbnails/vacation.jpg",
+      "modifiedAt": "2026-09-09T17:45:00Z",
+      "modifiedBy": "user1",
+      "createdAt": "2026-08-25T13:10:00Z"
+    },
+    {
+      "id": "8",
+      "name": "database.sql",
+      "path": "/Projects/database.sql",
+      "size": 156672,
+      "mimeType": "application/sql",
+      "thumbnail": null,
+      "modifiedAt": "2026-09-08T09:30:00Z",
+      "modifiedBy": "user1",
+      "createdAt": "2026-08-28T10:00:00Z"
+    },
+    {
+      "id": "9",
+      "name": "home-cloud.zip",
+      "path": "/Projects/home-cloud.zip",
+      "size": 18432000,
+      "mimeType": "application/zip",
+      "thumbnail": null,
+      "modifiedAt": "2026-09-07T21:10:00Z",
+      "modifiedBy": "user1",
+      "createdAt": "2026-09-07T20:00:00Z"
+    },
+    {
+      "id": "10",
+      "name": "presentation.pptx",
+      "path": "/Documents/presentation.pptx",
+      "size": 7340032,
+      "mimeType": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+      "thumbnail": null,
+      "modifiedAt": "2026-09-06T16:00:00Z",
+      "modifiedBy": "user1",
+      "createdAt": "2026-09-01T09:00:00Z"
+    }
+  ],
+  "storage-info": {
+    "usedSpace": 2000,
+    "availableSpace": 2000,
+    "totalSpace": 4000,
+    "fileCount": 0
+  },
+  "storage-usage": {
+    "totalSpace": 4000,
+    "points": [
+      {
+        "date": "2026-08-15",
+        "usedSpace": 1
+      },
+      {
+        "date": "2026-08-16",
+        "usedSpace": 6
+      },
+      {
+        "date": "2026-08-17",
+        "usedSpace": 63.1
+      },
+      {
+        "date": "2026-08-18",
+        "usedSpace": 64
+      },
+      {
+        "date": "2026-08-19",
+        "usedSpace": 64.2
+      },
+      {
+        "date": "2026-08-20",
+        "usedSpace": 65.1
+      },
+      {
+        "date": "2026-08-21",
+        "usedSpace": 65
+      },
+      {
+        "date": "2026-08-22",
+        "usedSpace": 66.3
+      },
+      {
+        "date": "2026-08-23",
+        "usedSpace": 67
+      },
+      {
+        "date": "2026-08-24",
+        "usedSpace": 66.8
+      },
+      {
+        "date": "2026-08-25",
+        "usedSpace": 68.2
+      },
+      {
+        "date": "2026-08-26",
+        "usedSpace": 8
+      },
+      {
+        "date": "2026-08-27",
+        "usedSpace": 12
+      },
+      {
+        "date": "2026-08-28",
+        "usedSpace": 23
+      },
+      {
+        "date": "2026-08-29",
+        "usedSpace": 71.3
+      },
+      {
+        "date": "2026-08-30",
+        "usedSpace": 71
+      },
+      {
+        "date": "2026-08-31",
+        "usedSpace": 72.4
+      },
+      {
+        "date": "2026-09-01",
+        "usedSpace": 73.1
+      },
+      {
+        "date": "2026-09-02",
+        "usedSpace": 73
+      },
+      {
+        "date": "2026-09-03",
+        "usedSpace": 74.2
+      },
+      {
+        "date": "2026-09-04",
+        "usedSpace": 75
+      },
+      {
+        "date": "2026-09-05",
+        "usedSpace": 75.6
+      },
+      {
+        "date": "2026-09-06",
+        "usedSpace": 76.1
+      },
+      {
+        "date": "2026-09-07",
+        "usedSpace": 77.3
+      },
+      {
+        "date": "2026-09-08",
+        "usedSpace": 77
+      },
+      {
+        "date": "2026-09-09",
+        "usedSpace": 78.4
+      },
+      {
+        "date": "2026-09-10",
+        "usedSpace": 79.1
+      },
+      {
+        "date": "2026-09-11",
+        "usedSpace": 79.6
+      },
+      {
+        "date": "2026-09-12",
+        "usedSpace": 80.2
+      },
+      {
+        "date": "2026-09-13",
+        "usedSpace": 81
+      }
+    ]
+  }
+}

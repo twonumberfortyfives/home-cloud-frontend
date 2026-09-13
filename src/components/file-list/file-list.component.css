@@ -27,6 +27,11 @@
   color: var(--text-secondary);
 }
 
+.file-list-actions {
+  display: flex;
+  gap: 8px;
+}
+
 
 /* File list */
 

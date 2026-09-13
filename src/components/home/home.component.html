@@ -5,30 +5,42 @@
   <main class="home-content container">
 
     <section class="welcome">
-      <h1>Hello,</h1>
-      <p>This is our personal cloud storage :)</p>
+      <h1>안녕하세요, Максим!</h1>
+      <p>Это наше цифровое хранилище :)</p>
     </section>
 
     <section class="stats">
 
-      <div class="stat-card card">
-        <span class="stat-label">Storage used</span>
-        <span class="stat-value">{{ storageUsed() }} GB</span>
-        <span class="stat-secondary">
-          of {{ totalStorage() }} GB
-        </span>
+      <div class="storage-donut card">
+
+        <div class="donut">
+          <canvas #storageDonut></canvas>
+
+          <div class="donut-center">
+            <strong>{{ usedPercent() }}%</strong>
+            <span>занято</span>
+          </div>
+        </div>
+
+        <ul class="donut-legend">
+          <li>
+            <span class="dot dot-used"></span>
+            Использовано
+            <strong>{{ usedSpace() }} GB</strong>
+          </li>
+          <li>
+            <span class="dot dot-free"></span>
+            Доступно
+            <strong>{{ availableSpace() }} GB</strong>
+          </li>
+        </ul>
+
       </div>
 
       <div class="stat-card card">
-        <span class="stat-label">Available</span>
-        <span class="stat-value">{{ availableStorage() }} GB</span>
-        <span class="stat-secondary">remaining</span>
-      </div>
-
-      <div class="stat-card card">
-        <span class="stat-label">Files</span>
+        <span class="stat-label">Кол-во файлов: </span>
         <span class="stat-value">{{ fileCount() }}</span>
-        <span class="stat-secondary">total files</span>
+        <span class="stat-secondary">всего файлов</span>
       </div>
 
     </section>
@@ -36,16 +48,22 @@
     <section class="storage-chart card">
 
       <div class="section-header">
-        <h2>Storage usage</h2>
-        <span>Last 30 days</span>
+        <div>
+          <h2>График использования хранилища</h2>
+          <span>За последние 30 дней</span>
+        </div>
+
+        <div class="storage-current">
+          <strong>{{ usedSpace() }} GB</strong>
+          <span>использовано</span>
+        </div>
       </div>
 
-      <div class="chart-placeholder">
-        <!-- Chart -->
+      <div class="chart">
+        <canvas #storageChart></canvas>
       </div>
 
     </section>
-
   </main>
 
 </div>

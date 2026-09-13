@@ -7,16 +7,27 @@
     <header class="file-list-header">
 
       <div>
-        <h1>Files</h1>
-        <p>Your personal files</p>
+        <h1>Файлы</h1>
+        <p>Ваши персональные данные</p>
       </div>
 
-      <button
-        class="button button-primary"
-        type="button"
-      >
-        Upload
-      </button>
+      <div class="file-list-actions">
+
+        <button
+          class="button button-primary"
+          type="button"
+        >
+          Загрузить
+        </button>
+
+        <button
+          class="button button-primary"
+          type="button"
+        >
+          Создать папку
+        </button>
+
+      </div>
 
     </header>
 
@@ -24,12 +35,18 @@
     <section class="file-list card">
 
       <div class="file-list-columns">
-        <span>Name</span>
-        <span>Size</span>
-        <span>Modified</span>
+        <span>Название</span>
+        <span>Размер</span>
+        <span>Изменено</span>
       </div>
 
-      <!-- Files will go here -->
+      @for (file of files(); track file.id) {
+        <app-file-item
+          [file]="file"
+          (download)="onDownload($event)"
+          (delete)="onDelete($event)"
+        />
+      }
 
     </section>
 
