@@ -129,10 +129,14 @@
 
 .stat-card {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  align-items: center;
+  gap: 32px;
 
   padding: 24px;
+}
+
+.stat-group {
+  flex: 1;
 }
 
 .stat-label {
@@ -187,17 +191,6 @@
 .section-header span {
   color: var(--text-muted);
   font-size: 13px;
-}
-
-.storage-current {
-  text-align: right;
-}
-
-.storage-current strong {
-  display: block;
-
-  font-size: 20px;
-  font-weight: 600;
 }
 
 .chart {

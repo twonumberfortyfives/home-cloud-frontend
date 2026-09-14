@@ -15,11 +15,15 @@ export class HomeComponent implements OnInit, OnDestroy {
     private readonly _storageInfoService: StorageInfoService = inject(StorageInfoService);
     private readonly _chartService: ChartService = inject(ChartService);
 
+    public readonly chartCanvas = viewChild.required<ElementRef<HTMLCanvasElement>>('storageChart');
+    public readonly donutCanvas = viewChild.required<ElementRef<HTMLCanvasElement>>('storageDonut');
+
     public readonly fileCount = signal<number>(0);
     public readonly usedSpace = signal<number>(0);
     public readonly availableSpace = signal<number>(0);
+    public readonly totalSpace = signal<number>(0);
     public readonly usedPercent = signal<number>(0);
-
+    
     public async ngOnInit(): Promise<void> {
         const [storageUsage, storageInfo] = await this._storageInfoService.getStorageInfo();
         
@@ -27,9 +31,10 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.fileCount.set(storageInfo.fileCount);
         this.availableSpace.set(storageInfo.availableSpace);
         this.usedSpace.set(storageInfo.usedSpace);
+        this.totalSpace.set(storageInfo.totalSpace);
 
-        this._chartService.renderChart(storageUsage.points, storageUsage.totalSpace);
-        this._chartService.renderDonut(storageInfo.usedSpace, storageInfo.availableSpace);    
+        this._chartService.renderChart(this.chartCanvas().nativeElement, storageUsage.points, storageUsage.totalSpace);
+        this._chartService.renderDonut(this.donutCanvas().nativeElement, storageInfo.usedSpace, storageInfo.availableSpace);
     }
 
     public async ngOnDestroy(): Promise<void> {

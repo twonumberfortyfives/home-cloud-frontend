@@ -37,11 +37,19 @@
 
       </div>
 
-      <div class="stat-card card">
+    <div class="stat-card card">
+      <div class="stat-group">
         <span class="stat-label">Кол-во файлов: </span>
         <span class="stat-value">{{ fileCount() }}</span>
         <span class="stat-secondary">всего файлов</span>
       </div>
+
+      <div class="stat-group">
+        <span class="stat-label">Размер жёсткого диска: </span>
+        <span class="stat-value">{{ totalSpace() }}</span>
+        <span class="stat-secondary">всего места</span>
+      </div>
+    </div>
 
     </section>
 
@@ -51,11 +59,6 @@
         <div>
           <h2>График использования хранилища</h2>
           <span>За последние 30 дней</span>
-        </div>
-
-        <div class="storage-current">
-          <strong>{{ usedSpace() }} GB</strong>
-          <span>использовано</span>
         </div>
       </div>
 

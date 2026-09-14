@@ -1,4 +1,4 @@
-import { ElementRef, Injectable, viewChild } from "@angular/core";
+import { Injectable } from "@angular/core";
 import { Chart } from "chart.js";
 import { StorageUsagePointDto } from "../../dtos/storage-usage";
 
@@ -9,16 +9,13 @@ export class ChartService {
     private readonly USED_COLOR: string = '#222';
     private readonly FREE_COLOR: string = '#e5e5e5';
 
-    public readonly canvas = viewChild.required<ElementRef<HTMLCanvasElement>>('storageChart');
-    public readonly donutCanvas = viewChild.required<ElementRef<HTMLCanvasElement>>('storageDonut');
-
     public chart: Chart | null = null;
     public donut: Chart | null = null;
 
-    public renderDonut(used: number, available: number): void {
+    public renderDonut(canvas: HTMLCanvasElement, used: number, available: number): void {
         this.donut?.destroy();
 
-        this.donut = new Chart(this.donutCanvas().nativeElement, {
+        this.donut = new Chart(canvas, {
             type: 'doughnut',
             data: {
                 labels: ['Использовано', 'Доступно'],
@@ -35,21 +32,16 @@ export class ChartService {
                 cutout: '72%',
                 plugins: {
                     legend: { display: false },
-                    tooltip: {
-                        displayColors: false,
-                        callbacks: {
-                            label: (item): string => `${item.parsed} GB`
-                        }
-                    }
+                    tooltip: { enabled: false }
                 }
             }
         });
     }
     
-    public renderChart(points: StorageUsagePointDto[], totalSpace: number): void {
+    public renderChart(canvas: HTMLCanvasElement, points: StorageUsagePointDto[], totalSpace: number): void {
         this.chart?.destroy();
 
-        this.chart = new Chart(this.canvas().nativeElement, {
+        this.chart = new Chart(canvas, {
             type: 'line',
             data: {
                 labels: points.map((point): string => new Date(point.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' })),
