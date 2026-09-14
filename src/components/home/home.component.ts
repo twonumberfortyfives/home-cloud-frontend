@@ -1,12 +1,7 @@
 import { Component, ElementRef, inject, OnDestroy, OnInit, signal, viewChild } from "@angular/core";
 import { NavbarComponent } from "../../shared/components/navbar/navbar.component";
-import { StorageUsagePointDto } from "../../dtos/storage-usage";
 import { StorageInfoService } from "../../shared/services/storage-info.service";
-import { Chart } from "chart.js";
-
-
-const USED_COLOR: string = '#222';
-const FREE_COLOR: string = '#e5e5e5';
+import { ChartService } from "../../shared/services/chart.service";
 
 @Component({
     selector: 'app-home',
@@ -17,125 +12,28 @@ const FREE_COLOR: string = '#e5e5e5';
     styleUrl: './home.component.css'
 })
 export class HomeComponent implements OnInit, OnDestroy {
-    private readonly _service: StorageInfoService = inject(StorageInfoService);
+    private readonly _storageInfoService: StorageInfoService = inject(StorageInfoService);
+    private readonly _chartService: ChartService = inject(ChartService);
 
     public readonly fileCount = signal<number>(0);
     public readonly usedSpace = signal<number>(0);
     public readonly availableSpace = signal<number>(0);
     public readonly usedPercent = signal<number>(0);
 
-    private readonly canvas = viewChild.required<ElementRef<HTMLCanvasElement>>('storageChart');
-    private readonly donutCanvas = viewChild.required<ElementRef<HTMLCanvasElement>>('storageDonut');
-
-    private chart: Chart | null = null;
-    private donut: Chart | null = null;
-
     public async ngOnInit(): Promise<void> {
-        const [storageUsage, storageInfo] = await this._service.getStorageInfo();
+        const [storageUsage, storageInfo] = await this._storageInfoService.getStorageInfo();
         
         this.usedPercent.set(Math.round((storageInfo.usedSpace / storageInfo.totalSpace) * 100))
         this.fileCount.set(storageInfo.fileCount);
         this.availableSpace.set(storageInfo.availableSpace);
         this.usedSpace.set(storageInfo.usedSpace);
 
-        this.renderChart(storageUsage.points, storageUsage.totalSpace);
-        this.renderDonut(storageInfo.usedSpace, storageInfo.availableSpace);    
+        this._chartService.renderChart(storageUsage.points, storageUsage.totalSpace);
+        this._chartService.renderDonut(storageInfo.usedSpace, storageInfo.availableSpace);    
     }
 
     public async ngOnDestroy(): Promise<void> {
-        this.chart?.destroy();
-        this.donut?.destroy();
-    }
-
-    private renderDonut(used: number, available: number): void {
-        this.donut?.destroy();
-
-        this.donut = new Chart(this.donutCanvas().nativeElement, {
-            type: 'doughnut',
-            data: {
-                labels: ['Использовано', 'Доступно'],
-                datasets: [{
-                    data: [used, available],
-                    backgroundColor: [USED_COLOR, FREE_COLOR],
-                    borderWidth: 0,
-                    hoverOffset: 6
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                cutout: '72%',
-                plugins: {
-                    legend: { display: false },
-                    tooltip: {
-                        displayColors: false,
-                        callbacks: {
-                            label: (item): string => `${item.parsed} GB`
-                        }
-                    }
-                }
-            }
-        });
-    }
-
-    private renderChart(points: StorageUsagePointDto[], totalSpace: number): void {
-        this.chart?.destroy();
-
-        this.chart = new Chart(this.canvas().nativeElement, {
-            type: 'line',
-            data: {
-                labels: points.map((point): string => new Date(point.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' })),
-                datasets: [{
-                    data: points.map((point): number => point.usedSpace),
-                    borderColor: '#222',
-                    borderWidth: 2,
-                    backgroundColor: 'rgba(34, 34, 34, 0.08)',
-                    fill: true,
-                    tension: 0.3,
-                    pointRadius: 0,
-                    pointHoverRadius: 4,
-                    pointHoverBackgroundColor: '#fff',
-                    pointHoverBorderColor: '#222'
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                interaction: { mode: 'index', intersect: false },
-                plugins: {
-                    legend: { display: false },
-                    tooltip: {
-                        displayColors: false,
-                        callbacks: {
-                            label: (item): string => `${item.parsed.y} GB`
-                        }
-                    }
-                },
-                scales: {
-                    x: {
-                        grid: { display: false },
-                        border: { display: false },
-                        ticks: {
-                            color: '#999',
-                            font: { size: 12 },
-                            maxRotation: 0,
-                            autoSkipPadding: 24
-                        }
-                    },
-                    y: {
-                        min: 0,
-                        max: totalSpace,
-                        grid: { color: '#e5e5e5' },
-                        border: { display: false },
-                        ticks: {
-                            color: '#999',
-                            font: { size: 12 },
-                            stepSize: totalSpace / 4,
-                            callback: (value): string => `${value} GB`
-                        }
-                    }
-                }
-            }
-        });
+        this._chartService.chart?.destroy();
+        this._chartService.donut?.destroy();
     }
 }
