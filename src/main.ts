@@ -5,7 +5,18 @@ import { HomeComponent } from './components/home/home.component';
 import { provideHttpClient } from '@angular/common/http';
 import { LoginComponent } from './components/login/login.component';
 import { FileListComponent } from './components/file-list/file-list.component';
-
+import {
+    ArcElement,
+    Chart,
+    DoughnutController,
+    Filler,
+    LineController,
+    LineElement,
+    LinearScale,
+    PointElement,
+    CategoryScale,
+    Tooltip
+} from "chart.js";
 
 @Component({
   selector: 'app-root',
@@ -22,10 +33,23 @@ const routes: Routes = [
 ];
 
 
+Chart.register(
+    LineController,
+    LineElement,
+    PointElement,
+    LinearScale,
+    CategoryScale,
+    DoughnutController,
+    ArcElement,
+    Filler,
+    Tooltip
+);
+
+
 bootstrapApplication(App, {
   providers: [
     provideRouter(routes),
-    provideHttpClient()
+    provideHttpClient(),
   ]
 })
   .catch((err) => console.error(err));

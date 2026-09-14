@@ -1,34 +1,9 @@
-import { Component, ElementRef, inject, OnDestroy, OnInit, Signal, signal, viewChild } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { firstValueFrom } from "rxjs";
-import {
-    ArcElement,
-    Chart,
-    DoughnutController,
-    Filler,
-    LineController,
-    LineElement,
-    LinearScale,
-    PointElement,
-    CategoryScale,
-    Tooltip
-} from "chart.js";
-import { NavbarComponent } from "../../shared/navbar/navbar.component";
-import { StorageInfoDto, StorageUsageDto, StorageUsagePointDto } from "../../dtos/storage-usage";
+import { Component, ElementRef, inject, OnDestroy, OnInit, signal, viewChild } from "@angular/core";
+import { NavbarComponent } from "../../shared/components/navbar/navbar.component";
+import { StorageUsagePointDto } from "../../dtos/storage-usage";
+import { StorageInfoService } from "../../shared/services/storage-info.service";
+import { Chart } from "chart.js";
 
-Chart.register(
-    LineController,
-    LineElement,
-    PointElement,
-    LinearScale,
-    CategoryScale,
-    DoughnutController,
-    ArcElement,
-    Filler,
-    Tooltip
-);
-
-const CHART_DAYS: number = 30;
 
 const USED_COLOR: string = '#222';
 const FREE_COLOR: string = '#e5e5e5';
@@ -37,13 +12,13 @@ const FREE_COLOR: string = '#e5e5e5';
     selector: 'app-home',
     standalone: true,
     imports: [NavbarComponent],
+    providers: [StorageInfoService],
     templateUrl: './home.component.html',
     styleUrl: './home.component.css'
 })
 export class HomeComponent implements OnInit, OnDestroy {
-    private readonly apiUrl: string = 'http://localhost:3000';
-    private readonly httpClient: HttpClient = inject(HttpClient);
-    
+    private readonly _service: StorageInfoService = inject(StorageInfoService);
+
     public readonly fileCount = signal<number>(0);
     public readonly usedSpace = signal<number>(0);
     public readonly availableSpace = signal<number>(0);
@@ -56,7 +31,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     private donut: Chart | null = null;
 
     public async ngOnInit(): Promise<void> {
-        const [storageUsage, storageInfo] = await this.getStorageInfo();
+        const [storageUsage, storageInfo] = await this._service.getStorageInfo();
         
         this.usedPercent.set(Math.round((storageInfo.usedSpace / storageInfo.totalSpace) * 100))
         this.fileCount.set(storageInfo.fileCount);
@@ -70,13 +45,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     public async ngOnDestroy(): Promise<void> {
         this.chart?.destroy();
         this.donut?.destroy();
-    }
-
-    private async getStorageInfo(): Promise<[StorageUsageDto, StorageInfoDto]> {
-        return Promise.all([
-            firstValueFrom(this.httpClient.get<StorageUsageDto>(`${this.apiUrl}/storage-usage`)),
-            firstValueFrom(this.httpClient.get<StorageInfoDto>(`${this.apiUrl}/storage-info`)),
-        ]);
     }
 
     private renderDonut(used: number, available: number): void {
@@ -116,7 +84,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.chart = new Chart(this.canvas().nativeElement, {
             type: 'line',
             data: {
-                labels: points.map((point): string => this.formatDate(point.date)),
+                labels: points.map((point): string => new Date(point.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' })),
                 datasets: [{
                     data: points.map((point): number => point.usedSpace),
                     borderColor: '#222',
@@ -169,13 +137,5 @@ export class HomeComponent implements OnInit, OnDestroy {
                 }
             }
         });
-    }
-
-    private formatDate(date: string): string {
-        return new Date(date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' });
-    }
-
-    public getTotalAmountOfFiles(): void {
-
     }
 }

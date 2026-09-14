@@ -1,5 +1,5 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
-import { NavbarComponent } from '../../shared/navbar/navbar.component';
+import { NavbarComponent } from '../../shared/components/navbar/navbar.component';
 import { FileItemComponent } from '../file-item/file-item.component';
 import { FileDto } from '../../dtos/file-item';
 import { HttpClient } from '@angular/common/http';
